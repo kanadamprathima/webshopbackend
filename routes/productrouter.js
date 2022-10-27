@@ -5,11 +5,9 @@ const { Router } = express;
 
 const router = new Router();
 router.get("/", async (req, res, next) => {
-  const limit = req.query.limit || 5;
-  const offset = req.query.offset || 0;
   try {
-    const result = await Products.findAndCountAll({ limit, offset });
-    res.send({ products: result.rows, total: result.count });
+    const result = await Products.findAll();
+    res.send(result);
   } catch (error) {
     next(error);
   }
